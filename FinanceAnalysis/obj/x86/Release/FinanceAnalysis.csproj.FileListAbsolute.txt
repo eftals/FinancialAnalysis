@@ -1,0 +1,33 @@
+C:\Users\Administrator\AppData\Local\Temporary Projects\FinanceAnalysis\obj\x86\Release\ResolveAssemblyReference.cache
+C:\Users\Administrator\AppData\Local\Temporary Projects\FinanceAnalysis\obj\x86\Release\MainWindow.baml
+C:\Users\Administrator\AppData\Local\Temporary Projects\FinanceAnalysis\obj\x86\Release\MainWindow.g.cs
+C:\Users\Administrator\AppData\Local\Temporary Projects\FinanceAnalysis\obj\x86\Release\App.g.cs
+C:\Users\Administrator\AppData\Local\Temporary Projects\FinanceAnalysis\obj\x86\Release\FinanceAnalysis_MarkupCompile.cache
+C:\Users\Administrator\AppData\Local\Temporary Projects\FinanceAnalysis\obj\x86\Release\FinanceAnalysis.g.resources
+C:\Users\Administrator\AppData\Local\Temporary Projects\FinanceAnalysis\obj\x86\Release\FinanceAnalysis.Properties.Resources.resources
+C:\Users\Administrator\AppData\Local\Temporary Projects\FinanceAnalysis\obj\x86\Release\GenerateResource.read.1.tlog
+C:\Users\Administrator\AppData\Local\Temporary Projects\FinanceAnalysis\obj\x86\Release\GenerateResource.write.1.tlog
+C:\Users\Administrator\AppData\Local\Temporary Projects\FinanceAnalysis\bin\Release\FinanceAnalysis.exe.config
+C:\Users\Administrator\AppData\Local\Temporary Projects\FinanceAnalysis\bin\Release\FinanceAnalysis.exe
+C:\Users\Administrator\AppData\Local\Temporary Projects\FinanceAnalysis\bin\Release\FinanceAnalysis.pdb
+C:\Users\Administrator\AppData\Local\Temporary Projects\FinanceAnalysis\obj\x86\Release\FinanceAnalysis.exe
+C:\Users\Administrator\AppData\Local\Temporary Projects\FinanceAnalysis\obj\x86\Release\FinanceAnalysis.pdb
+c:\dev\FinanceAnalysis\FinanceAnalysis\bin\Release\FinanceAnalysis.exe.config
+c:\dev\FinanceAnalysis\FinanceAnalysis\bin\Release\FinanceAnalysis.exe
+c:\dev\FinanceAnalysis\FinanceAnalysis\bin\Release\FinanceAnalysis.pdb
+c:\dev\FinanceAnalysis\FinanceAnalysis\obj\x86\Release\ResolveAssemblyReference.cache
+c:\dev\FinanceAnalysis\FinanceAnalysis\obj\x86\Release\RBT.baml
+c:\dev\FinanceAnalysis\FinanceAnalysis\obj\x86\Release\RBT.g.cs
+c:\dev\FinanceAnalysis\FinanceAnalysis\obj\x86\Release\App.g.cs
+c:\dev\FinanceAnalysis\FinanceAnalysis\obj\x86\Release\FinanceAnalysis_MarkupCompile.cache
+c:\dev\FinanceAnalysis\FinanceAnalysis\obj\x86\Release\FinanceAnalysis.g.resources
+c:\dev\FinanceAnalysis\FinanceAnalysis\obj\x86\Release\FinanceAnalysis.Properties.Resources.resources
+c:\dev\FinanceAnalysis\FinanceAnalysis\obj\x86\Release\GenerateResource.read.1.tlog
+c:\dev\FinanceAnalysis\FinanceAnalysis\obj\x86\Release\GenerateResource.write.1.tlog
+c:\dev\FinanceAnalysis\FinanceAnalysis\obj\x86\Release\FinanceAnalysis.exe
+c:\dev\FinanceAnalysis\FinanceAnalysis\obj\x86\Release\FinanceAnalysis.pdb
+c:\dev\FinanceAnalysis\FinanceAnalysis\obj\x86\Release\GeneratedInternalTypeHelper.g.cs
+c:\dev\FinanceAnalysis\FinanceAnalysis\obj\x86\Release\FinanceAnalysis_MarkupCompile.lref
+C:\DEV\FinanceAnalysis\FinanceAnalysis\bin\Release\SchoolDB.mdf
+C:\DEV\FinanceAnalysis\FinanceAnalysis\bin\Release\SchoolDB_log.ldf
+C:\DEV\FinanceAnalysis\FinanceAnalysis\obj\x86\Release\FinanceAnalysis_Content.g.cs

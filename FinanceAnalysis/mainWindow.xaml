@@ -1,0 +1,75 @@
+﻿<Window x:Class="FinanceAnalysis.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:vm="clr-namespace:FinanceAnalysis"
+        Title="MainView" Height="350" Width="525"
+        DataContext="{DynamicResource EftalDBViewModel}">
+    <Window.Resources>
+        <DataGrid x:Key="PersonDataGrid" AutoGenerateColumns="False" ItemsSource="{Binding Path=dStockPriceColl}" SelectedItem="{Binding Path=SelectedPerson}" x:Shared="False">
+            <DataGrid.Columns>
+                <DataGridTextColumn Header="Ticker" Binding="{Binding Path=TICKER}" IsReadOnly="True"/>
+                <DataGridTextColumn Header="TickerName" Binding="{Binding Path=tickerName}" IsReadOnly="True"/>
+                <DataGridTextColumn Header="Open" Binding="{Binding Path=Open}" IsReadOnly="True"/>
+                <DataGridTextColumn Header="High" Binding="{Binding Path=High}" IsReadOnly="True"/>
+                <DataGridTextColumn Header="Low" Binding="{Binding Path=Low}" IsReadOnly="True"/>
+                <DataGridTextColumn Header="Close" Binding="{Binding Path=Close}" IsReadOnly="True"/>
+                <DataGridTextColumn Header="Volume" Binding="{Binding Path=Volume}" IsReadOnly="True"/>
+                    
+                <DataGridTemplateColumn Header="Date">
+                    <DataGridTemplateColumn.CellTemplate>
+                        <DataTemplate>
+                            <TextBlock Text="{Binding Date}" Margin="4"/>
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellTemplate>
+                    <DataGridTemplateColumn.CellEditingTemplate>
+                        <DataTemplate>
+                            <DatePicker 
+                                SelectedDate="{Binding Date, Mode=TwoWay}" />
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellEditingTemplate>
+                </DataGridTemplateColumn>
+
+            </DataGrid.Columns>
+        </DataGrid>
+
+        <vm:EftalDBViewModel x:Key="EftalDBViewModel"/>
+        
+        <DataTemplate x:Key="DailyStockPriceTemplate" DataType="DailyStockPrice">
+            
+        </DataTemplate>
+        
+    </Window.Resources>
+    <Grid Name="mainGrid">
+        <Grid.RowDefinitions>
+            <RowDefinition Height= "90"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+
+
+        <GroupBox Grid.Row="0"  Margin="10,10,10,10">
+            <StackPanel Orientation="Horizontal" DataContext="{Binding}">              
+                    <Label Margin="10,10,10,10" Width ="50" Height="30">Ticker</Label>
+                    <TextBox Margin="10,10,10,10" Width="50" Height="30" Text="{Binding Path=SelectedPerson.tickerName}"/>
+                    <Label Margin ="10,10,10,10" Width="50" Height="30">Price</Label>
+                    <TextBox Margin ="10,10,10,10" Width="50" Height="30">12</TextBox>
+                <Button Margin="10,10,10,10" Width="50" Height="50" Click="Button_Click">Update</Button>
+            </StackPanel>
+
+            </GroupBox>            
+      
+        <ContentControl Grid.Row="2"  Margin="10,10,10,10" Content="{StaticResource PersonDataGrid}" DataContext="{Binding}"></ContentControl>
+            <!--<DataGrid ItemsSource="{Binding Path=dStockPriceColl}" AutoGenerateColumns="True">
+            
+            <DataGrid.Columns>
+                <DataGridTemplateColumn Header="Price Date" Width="SizeToCells" IsReadOnly="True">
+                    <DataGridTemplateColumn.CellTemplate>
+                        <DataTemplate>
+                            <DatePicker Name="Date" Text="{Binding Path=Date}" />
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellTemplate>
+                </DataGridTemplateColumn>
+            </DataGrid.Columns>
+       </DataGrid>-->
+        
+    </Grid>
+</Window>

@@ -1,0 +1,154 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="SchoolDBModel" Alias="Self" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns="http://schemas.microsoft.com/ado/2008/09/edm">
+  <EntityContainer Name="SchoolDBEntities" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="Courses" EntityType="SchoolDBModel.Cours" />
+    <EntitySet Name="Standards" EntityType="SchoolDBModel.Standard" />
+    <EntitySet Name="StudentAddresses" EntityType="SchoolDBModel.StudentAddress" />
+    <EntitySet Name="Students" EntityType="SchoolDBModel.Student" />
+    <EntitySet Name="Teachers" EntityType="SchoolDBModel.Teacher" />
+    <EntitySet Name="View_StudentCourse" EntityType="SchoolDBModel.View_StudentCourse" />
+    <AssociationSet Name="FK_Course_Teacher" Association="SchoolDBModel.FK_Course_Teacher">
+      <End Role="Teachers" EntitySet="Teachers" />
+      <End Role="Courses" EntitySet="Courses" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Student_Standard" Association="SchoolDBModel.FK_Student_Standard">
+      <End Role="Standards" EntitySet="Standards" />
+      <End Role="Students" EntitySet="Students" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Teacher_Standard" Association="SchoolDBModel.FK_Teacher_Standard">
+      <End Role="Standards" EntitySet="Standards" />
+      <End Role="Teachers" EntitySet="Teachers" />
+    </AssociationSet>
+    <AssociationSet Name="FK_StudentAddress_Student" Association="SchoolDBModel.FK_StudentAddress_Student">
+      <End Role="Students" EntitySet="Students" />
+      <End Role="StudentAddresses" EntitySet="StudentAddresses" />
+    </AssociationSet>
+    <AssociationSet Name="StudentCourse" Association="SchoolDBModel.StudentCourse">
+      <End Role="Courses" EntitySet="Courses" />
+      <End Role="Students" EntitySet="Students" />
+    </AssociationSet>
+  </EntityContainer>
+  <EntityType Name="Cours">
+    <Key>
+      <PropertyRef Name="CourseId" />
+    </Key>
+    <Property Name="CourseId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="CourseName" Type="String" MaxLength="50" Unicode="false" FixedLength="false" />
+    <Property Name="Location" Type="String" MaxLength="50" Unicode="false" FixedLength="false" />
+    <Property Name="Teacher_TeacherId" Type="Int32" />
+    <NavigationProperty Name="Teacher" Relationship="SchoolDBModel.FK_Course_Teacher" FromRole="Courses" ToRole="Teachers" />
+    <NavigationProperty Name="Students" Relationship="SchoolDBModel.StudentCourse" FromRole="Courses" ToRole="Students" />
+  </EntityType>
+  <EntityType Name="Standard">
+    <Key>
+      <PropertyRef Name="StandardId" />
+    </Key>
+    <Property Name="StandardId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="StandardName" Type="String" MaxLength="50" Unicode="false" FixedLength="false" />
+    <Property Name="Description" Type="String" MaxLength="50" Unicode="false" FixedLength="false" />
+    <NavigationProperty Name="Students" Relationship="SchoolDBModel.FK_Student_Standard" FromRole="Standards" ToRole="Students" />
+    <NavigationProperty Name="Teachers" Relationship="SchoolDBModel.FK_Teacher_Standard" FromRole="Standards" ToRole="Teachers" />
+  </EntityType>
+  <EntityType Name="StudentAddress">
+    <Key>
+      <PropertyRef Name="StudentID" />
+    </Key>
+    <Property Name="StudentID" Type="Int32" Nullable="false" />
+    <Property Name="Address1" Type="String" Nullable="false" MaxLength="50" Unicode="false" FixedLength="false" />
+    <Property Name="Address2" Type="String" MaxLength="50" Unicode="false" FixedLength="false" />
+    <Property Name="City" Type="String" Nullable="false" MaxLength="50" Unicode="false" FixedLength="false" />
+    <Property Name="State" Type="String" Nullable="false" MaxLength="50" Unicode="false" FixedLength="false" />
+    <NavigationProperty Name="Student" Relationship="SchoolDBModel.FK_StudentAddress_Student" FromRole="StudentAddresses" ToRole="Students" />
+  </EntityType>
+  <EntityType Name="Student">
+    <Key>
+      <PropertyRef Name="StudentID" />
+    </Key>
+    <Property Name="StudentID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="StudentName" Type="String" MaxLength="50" Unicode="false" FixedLength="false" />
+    <Property Name="Standard_StandardId" Type="Int32" />
+    <NavigationProperty Name="Standard" Relationship="SchoolDBModel.FK_Student_Standard" FromRole="Students" ToRole="Standards" />
+    <NavigationProperty Name="StudentAddress" Relationship="SchoolDBModel.FK_StudentAddress_Student" FromRole="Students" ToRole="StudentAddresses" />
+    <NavigationProperty Name="Courses" Relationship="SchoolDBModel.StudentCourse" FromRole="Students" ToRole="Courses" />
+  </EntityType>
+  <EntityType Name="Teacher">
+    <Key>
+      <PropertyRef Name="TeacherId" />
+    </Key>
+    <Property Name="TeacherId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="TeacherName" Type="String" MaxLength="50" Unicode="false" FixedLength="false" />
+    <Property Name="Standard_StandardId" Type="Int32" />
+    <NavigationProperty Name="Courses" Relationship="SchoolDBModel.FK_Course_Teacher" FromRole="Teachers" ToRole="Courses" />
+    <NavigationProperty Name="Standard" Relationship="SchoolDBModel.FK_Teacher_Standard" FromRole="Teachers" ToRole="Standards" />
+  </EntityType>
+  <EntityType Name="View_StudentCourse">
+    <Key>
+      <PropertyRef Name="StudentID" />
+      <PropertyRef Name="CourseId" />
+    </Key>
+    <Property Name="StudentID" Type="Int32" Nullable="false" />
+    <Property Name="StudentName" Type="String" MaxLength="50" Unicode="false" FixedLength="false" />
+    <Property Name="CourseId" Type="Int32" Nullable="false" />
+    <Property Name="CourseName" Type="String" MaxLength="50" Unicode="false" FixedLength="false" />
+  </EntityType>
+  <Association Name="FK_Course_Teacher">
+    <End Role="Teachers" Type="SchoolDBModel.Teacher" Multiplicity="0..1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="Courses" Type="SchoolDBModel.Cours" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Teachers">
+        <PropertyRef Name="TeacherId" />
+      </Principal>
+      <Dependent Role="Courses">
+        <PropertyRef Name="Teacher_TeacherId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Student_Standard">
+    <End Role="Standards" Type="SchoolDBModel.Standard" Multiplicity="0..1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="Students" Type="SchoolDBModel.Student" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Standards">
+        <PropertyRef Name="StandardId" />
+      </Principal>
+      <Dependent Role="Students">
+        <PropertyRef Name="Standard_StandardId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Teacher_Standard">
+    <End Role="Standards" Type="SchoolDBModel.Standard" Multiplicity="0..1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="Teachers" Type="SchoolDBModel.Teacher" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Standards">
+        <PropertyRef Name="StandardId" />
+      </Principal>
+      <Dependent Role="Teachers">
+        <PropertyRef Name="Standard_StandardId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_StudentAddress_Student">
+    <End Role="Students" Type="SchoolDBModel.Student" Multiplicity="1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="StudentAddresses" Type="SchoolDBModel.StudentAddress" Multiplicity="0..1" />
+    <ReferentialConstraint>
+      <Principal Role="Students">
+        <PropertyRef Name="StudentID" />
+      </Principal>
+      <Dependent Role="StudentAddresses">
+        <PropertyRef Name="StudentID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="StudentCourse">
+    <End Role="Courses" Type="SchoolDBModel.Cours" Multiplicity="*" />
+    <End Role="Students" Type="SchoolDBModel.Student" Multiplicity="*" />
+  </Association>
+</Schema>

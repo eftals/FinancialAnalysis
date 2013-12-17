@@ -1,0 +1,28 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2008/09/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="EftalModelStoreContainer" CdmEntityContainer="Entities">
+    <EntitySetMapping Name="DailyStockPrices">
+      <EntityTypeMapping TypeName="EftalModel.DailyStockPrice">
+        <MappingFragment StoreEntitySet="DailyStockPrice">
+          <ScalarProperty Name="DailyStockPriceID" ColumnName="DailyStockPriceID" />
+          <ScalarProperty Name="TICKER" ColumnName="TICKER" />
+          <ScalarProperty Name="Date" ColumnName="Date" />
+          <ScalarProperty Name="Open" ColumnName="Open" />
+          <ScalarProperty Name="High" ColumnName="High" />
+          <ScalarProperty Name="Low" ColumnName="Low" />
+          <ScalarProperty Name="Close" ColumnName="Close" />
+          <ScalarProperty Name="Volume" ColumnName="Volume" />
+          <ScalarProperty Name="adjClose" ColumnName="adjClose" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Tickers">
+      <EntityTypeMapping TypeName="EftalModel.Ticker">
+        <MappingFragment StoreEntitySet="Ticker">
+          <ScalarProperty Name="TickerID" ColumnName="TickerID" />
+          <ScalarProperty Name="TickerName" ColumnName="TickerName" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+  </EntityContainerMapping>
+</Mapping>

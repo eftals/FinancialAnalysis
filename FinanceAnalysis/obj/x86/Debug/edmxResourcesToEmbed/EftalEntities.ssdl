@@ -1,0 +1,60 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="EftalModel.Store" Alias="Self" Provider="System.Data.SqlClient" ProviderManifestToken="2008" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/02/edm/ssdl">
+  <EntityContainer Name="EftalModelStoreContainer">
+    <EntitySet Name="DailyStockPrice" EntityType="EftalModel.Store.DailyStockPrice" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="Ticker" EntityType="EftalModel.Store.Ticker" store:Type="Tables" Schema="dbo" />
+    <AssociationSet Name="FK__DailyStoc__TICKE__267ABA7A" Association="EftalModel.Store.FK__DailyStoc__TICKE__267ABA7A">
+      <End Role="Ticker" EntitySet="Ticker" />
+      <End Role="DailyStockPrice" EntitySet="DailyStockPrice" />
+    </AssociationSet>
+    <AssociationSet Name="FK__DailyStoc__TICKE__276EDEB3" Association="EftalModel.Store.FK__DailyStoc__TICKE__276EDEB3">
+      <End Role="Ticker" EntitySet="Ticker" />
+      <End Role="DailyStockPrice" EntitySet="DailyStockPrice" />
+    </AssociationSet>
+  </EntityContainer>
+  <EntityType Name="DailyStockPrice">
+    <Key>
+      <PropertyRef Name="DailyStockPriceID" />
+    </Key>
+    <Property Name="DailyStockPriceID" Type="int" Nullable="false" />
+    <Property Name="TICKER" Type="int" Nullable="false" />
+    <Property Name="Date" Type="date" Nullable="false" />
+    <Property Name="Open" Type="float" Nullable="false" />
+    <Property Name="High" Type="float" Nullable="false" />
+    <Property Name="Low" Type="float" Nullable="false" />
+    <Property Name="Close" Type="float" Nullable="false" />
+    <Property Name="Volume" Type="int" Nullable="false" />
+    <Property Name="adjClose" Type="float" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Ticker">
+    <Key>
+      <PropertyRef Name="TickerID" />
+    </Key>
+    <Property Name="TickerID" Type="int" Nullable="false" />
+    <Property Name="TickerName" Type="char" Nullable="false" MaxLength="25" />
+  </EntityType>
+  <Association Name="FK__DailyStoc__TICKE__267ABA7A">
+    <End Role="Ticker" Type="EftalModel.Store.Ticker" Multiplicity="1" />
+    <End Role="DailyStockPrice" Type="EftalModel.Store.DailyStockPrice" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Ticker">
+        <PropertyRef Name="TickerID" />
+      </Principal>
+      <Dependent Role="DailyStockPrice">
+        <PropertyRef Name="TICKER" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__DailyStoc__TICKE__276EDEB3">
+    <End Role="Ticker" Type="EftalModel.Store.Ticker" Multiplicity="1" />
+    <End Role="DailyStockPrice" Type="EftalModel.Store.DailyStockPrice" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Ticker">
+        <PropertyRef Name="TickerID" />
+      </Principal>
+      <Dependent Role="DailyStockPrice">
+        <PropertyRef Name="TICKER" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+</Schema>
