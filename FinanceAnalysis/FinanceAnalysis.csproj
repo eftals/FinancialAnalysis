@@ -73,20 +73,21 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
-    <Compile Include="DailyStockPricePOCO.cs" />
+    <Compile Include="Helpers\CurrencyConversion.cs" />
+    <Compile Include="Helpers\RelayCommand.cs" />
+    <Compile Include="POCO\DailyStockPricePOCO.cs" />
     <Compile Include="EftalDB.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>EftalDB.edmx</DependentUpon>
     </Compile>
     <Compile Include="EftalDBViewModel.cs" />
+    <Compile Include="POCO\TickerPOCO.cs" />
     <Compile Include="Settings.cs" />
-    <Compile Include="StudentDB.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>StudentDB.edmx</DependentUpon>
+    <Compile Include="tkrEdit.xaml.cs">
+      <DependentUpon>tkrEdit.xaml</DependentUpon>
     </Compile>
-    <Compile Include="yhooreader.cs" />
+    <Compile Include="YahooStockService.cs" />
     <Page Include="mainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
@@ -99,6 +100,10 @@
       <DependentUpon>mainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
+    <Page Include="tkrEdit.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Properties\AssemblyInfo.cs">
@@ -128,10 +133,6 @@
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
     </None>
     <AppDesigner Include="Properties\" />
-    <EntityDeploy Include="StudentDB.edmx">
-      <Generator>EntityModelCodeGenerator</Generator>
-      <LastGenOutput>StudentDB.Designer.cs</LastGenOutput>
-    </EntityDeploy>
   </ItemGroup>
   <ItemGroup>
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
@@ -167,15 +168,6 @@
       <ProductName>Windows Installer 4.5</ProductName>
       <Install>true</Install>
     </BootstrapperPackage>
-  </ItemGroup>
-  <ItemGroup>
-    <Content Include="SchoolDB.mdf">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
-    <Content Include="SchoolDB_log.ldf">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-      <DependentUpon>SchoolDB.mdf</DependentUpon>
-    </Content>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

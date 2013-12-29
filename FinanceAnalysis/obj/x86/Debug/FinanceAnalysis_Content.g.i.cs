@@ -8,7 +8,6 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-[assembly: System.Windows.Resources.AssemblyAssociatedContentFileAttribute("schooldb.mdf")]
 [assembly: System.Windows.Resources.AssemblyAssociatedContentFileAttribute("schooldb_log.ldf")]
 
 

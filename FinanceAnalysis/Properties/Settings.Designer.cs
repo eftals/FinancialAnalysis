@@ -26,9 +26,18 @@ namespace FinanceAnalysis.Properties {
         [global::System.Configuration.ApplicationScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.DefaultSettingValueAttribute("http://ichart.yahoo.com/table.csv?s={TICKER}&a=0&b=1&c=2000&d=0&e=31&f=2020&g=d")]
-        public string yhoosrequest {
+        public string yhooHist {
             get {
-                return ((string)(this["yhoosrequest"]));
+                return ((string)(this["yhooHist"]));
+            }
+        }
+        
+        [global::System.Configuration.ApplicationScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("http://finance.yahoo.com/d/quotes.csv?s={TICKER}&f=d1t1l1")]
+        public string yhooLastPrice {
+            get {
+                return ((string)(this["yhooLastPrice"]));
             }
         }
     }

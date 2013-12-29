@@ -19,26 +19,16 @@ namespace FinanceAnalysis
     /// </summary>
     public partial class MainWindow : Window
     {
-        yhooreader yahooReaderInst;
+     
         public MainWindow()
         {
 
             InitializeComponent();
-
-            yahooReaderInst = new yhooreader(Properties.Settings.Default.yhoosrequest);
-
-            //yahooReaderInst.getStockHistory("IBM");
-
-          /*  EftalDBViewModel ef = new EftalDBViewModel();
-
-            DataContext = ef;
-            */
-        }
-
-        private void Button_Click(object sender, RoutedEventArgs e)
-        {
-           var val= this.DataContext;
             
         }
+
+       
+
+  
     }
 }

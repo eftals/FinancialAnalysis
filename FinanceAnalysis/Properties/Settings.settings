@@ -2,8 +2,11 @@
 <SettingsFile xmlns="http://schemas.microsoft.com/VisualStudio/2004/01/settings" CurrentProfile="(Default)" GeneratedClassNamespace="FinanceAnalysis.Properties" GeneratedClassName="Settings">
   <Profiles />
   <Settings>
-    <Setting Name="yhoosrequest" Type="System.String" Scope="Application">
+    <Setting Name="yhooHist" Type="System.String" Scope="Application">
       <Value Profile="(Default)">http://ichart.yahoo.com/table.csv?s={TICKER}&amp;a=0&amp;b=1&amp;c=2000&amp;d=0&amp;e=31&amp;f=2020&amp;g=d</Value>
+    </Setting>
+    <Setting Name="yhooLastPrice" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">http://finance.yahoo.com/d/quotes.csv?s={TICKER}&amp;f=d1t1l1</Value>
     </Setting>
   </Settings>
 </SettingsFile>

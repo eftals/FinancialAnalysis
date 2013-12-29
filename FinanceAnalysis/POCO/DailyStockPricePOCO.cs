@@ -9,25 +9,6 @@ namespace FinanceAnalysis
     class DailyStockPricePOCO:DependencyObject
     {
 
-     
-     /*
-        DailyStockPrice dailyStockPrice = new DailyStockPrice();
-            dailyStockPrice.DailyStockPriceID = dailyStockPriceID;
-            dailyStockPrice.TICKER = tICKER;
-            dailyStockPrice.Date = date;
-            dailyStockPrice.Open = open;
-            dailyStockPrice.High = high;
-            dailyStockPrice.Low = low;
-            dailyStockPrice.Close = close;
-            dailyStockPrice.Volume = volume;
-            dailyStockPrice.adjClose = adjClose;
-            return dailyStockPrice;
-        */
-
-
-
-
-
         public double Open
         {
             get { return (double)GetValue(OpenProperty); }
@@ -63,8 +44,7 @@ namespace FinanceAnalysis
         public static readonly DependencyProperty TICKERProperty =
             DependencyProperty.Register("TICKER", typeof(int), typeof(DailyStockPricePOCO), new UIPropertyMetadata(0));
 
-
-
+   
         public string tickerName
         {
             get { return (string)GetValue(tickerNameProperty); }
@@ -138,10 +118,8 @@ namespace FinanceAnalysis
 
         // Using a DependencyProperty as the backing store for Volume.  This enables animation, styling, binding, etc...
         public static readonly DependencyProperty VolumeProperty =
-            DependencyProperty.Register("Volume", typeof(double), typeof(DailyStockPricePOCO), new UIPropertyMetadata(0D));
-
-        
+            DependencyProperty.Register("Volume", typeof(double), typeof(DailyStockPricePOCO), new UIPropertyMetadata(0D));        
     }
     
-    }
+}
 

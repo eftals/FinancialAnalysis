@@ -4,9 +4,12 @@
         xmlns:vm="clr-namespace:FinanceAnalysis"
         Title="MainView" Height="350" Width="525"
         DataContext="{DynamicResource EftalDBViewModel}">
+    
     <Window.Resources>
-        <DataGrid x:Key="PersonDataGrid" AutoGenerateColumns="False" ItemsSource="{Binding Path=dStockPriceColl}" SelectedItem="{Binding Path=SelectedPerson}" x:Shared="False">
+        <vm:CurrencyConverter x:Key="CurrencyConverter" />
+        <DataGrid x:Key="PriceHistoryGrid" AutoGenerateColumns="False" ItemsSource="{Binding Path=dStockPriceColl}" SelectedItem="{Binding Path=SelectedTicker}" x:Shared="False">
             <DataGrid.Columns>
+                <DataGridTextColumn Header="Price ID" Binding="{Binding Path=DailyStockPriceID}" IsReadOnly="True"/>
                 <DataGridTextColumn Header="Ticker" Binding="{Binding Path=TICKER}" IsReadOnly="True"/>
                 <DataGridTextColumn Header="TickerName" Binding="{Binding Path=tickerName}" IsReadOnly="True"/>
                 <DataGridTextColumn Header="Open" Binding="{Binding Path=Open}" IsReadOnly="True"/>
@@ -31,7 +34,57 @@
 
             </DataGrid.Columns>
         </DataGrid>
+   
 
+        <DataGrid x:Key="Ticker" AutoGenerateColumns="False" ItemsSource="{Binding Path=dTickerColl, Mode=TwoWay}"  SelectedItem="{Binding Path=SelectedTicker}" x:Shared="False" CanUserAddRows="False">
+            <DataGrid.Columns>
+                <DataGridTextColumn Header="Ticker" Binding="{Binding Path=TickerID}" IsReadOnly="True"/>
+                <DataGridTextColumn Header="TickerName" Binding="{Binding Path=TickerName}" IsReadOnly="True"/>  
+                <DataGridTextColumn Header="Price" Binding="{Binding Path=LastPrice, Converter={StaticResource CurrencyConverter}}" IsReadOnly="True"/>
+                <DataGridTemplateColumn Header="Date">
+                    <DataGridTemplateColumn.CellTemplate>
+                        <DataTemplate>
+                            <TextBlock Text="{Binding Date}" Margin="0"/>
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellTemplate>
+                    <DataGridTemplateColumn.CellEditingTemplate>
+                        <DataTemplate>
+                            <DatePicker 
+                                SelectedDate="{Binding Date, Mode=TwoWay}" />
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellEditingTemplate>
+                </DataGridTemplateColumn>
+                <DataGridTemplateColumn Header="Last Updated">
+                    <DataGridTemplateColumn.CellTemplate>
+                        <DataTemplate>
+                            <TextBlock Text="{Binding LastUpdated}" Margin="0"/>
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellTemplate>
+                    <DataGridTemplateColumn.CellEditingTemplate>
+                        <DataTemplate>
+                            <DatePicker 
+                                SelectedDate="{Binding Date, Mode=TwoWay}" />
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellEditingTemplate>
+                </DataGridTemplateColumn>
+
+            </DataGrid.Columns>
+            <DataGrid.ContextMenu>
+                <ContextMenu>
+                    <MenuItem Command="{Binding AddNewCommand}" Header="_Add New"/>
+            
+                    <MenuItem Command="{Binding EditCommand}" Header="_Edit"/>
+                       
+                    <MenuItem Header="_Delete"/>
+                    
+                    <Separator/>
+                    <MenuItem Header="_Refresh History" Command="{Binding GetPriceHistoryCommand}"/>
+                        
+                </ContextMenu>
+            </DataGrid.ContextMenu>
+        </DataGrid>
+        
+        
         <vm:EftalDBViewModel x:Key="EftalDBViewModel"/>
         
         <DataTemplate x:Key="DailyStockPriceTemplate" DataType="DailyStockPrice">
@@ -39,37 +92,42 @@
         </DataTemplate>
         
     </Window.Resources>
-    <Grid Name="mainGrid">
-        <Grid.RowDefinitions>
-            <RowDefinition Height= "90"/>
-            <RowDefinition Height="*"/>
-        </Grid.RowDefinitions>
+ 
+    
+    <TabControl Name="TradeScreens">
+        <TabItem Name="_TickerScreen" Header="_Tickers">
+            <Grid Name="tickerGrid">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="*"/>
+                </Grid.ColumnDefinitions>
+                <ContentControl Grid.Column="0" Margin="10" Content="{StaticResource Ticker}" DataContext="{Binding}"></ContentControl>
+                <ContentControl Grid.Column="1"  Margin="10,10,10,10" Content="{StaticResource PriceHistoryGrid}" DataContext="{Binding}"></ContentControl>
 
+            </Grid>
 
-        <GroupBox Grid.Row="0"  Margin="10,10,10,10">
-            <StackPanel Orientation="Horizontal" DataContext="{Binding}">              
+           
+
+        </TabItem>
+        <TabItem Header="_Price History">
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition/>
+                    <RowDefinition Height="*"/>
+                </Grid.RowDefinitions>
+                <GroupBox Grid.Row="0"  Margin="10,10,10,10">
+                <StackPanel Orientation="Horizontal" DataContext="{Binding}">
                     <Label Margin="10,10,10,10" Width ="50" Height="30">Ticker</Label>
-                    <TextBox Margin="10,10,10,10" Width="50" Height="30" Text="{Binding Path=SelectedPerson.tickerName}"/>
+                    <TextBox Margin="10,10,10,10" Width="50" Height="30" Text="{Binding Path=SelectedTicker.tickerName}"/>
                     <Label Margin ="10,10,10,10" Width="50" Height="30">Price</Label>
                     <TextBox Margin ="10,10,10,10" Width="50" Height="30">12</TextBox>
-                <Button Margin="10,10,10,10" Width="50" Height="50" Click="Button_Click">Update</Button>
-            </StackPanel>
+                    <Button Margin="10,10,10,10" Width="50" Height="50">Update</Button>
+                </StackPanel>
 
-            </GroupBox>            
-      
-        <ContentControl Grid.Row="2"  Margin="10,10,10,10" Content="{StaticResource PersonDataGrid}" DataContext="{Binding}"></ContentControl>
-            <!--<DataGrid ItemsSource="{Binding Path=dStockPriceColl}" AutoGenerateColumns="True">
-            
-            <DataGrid.Columns>
-                <DataGridTemplateColumn Header="Price Date" Width="SizeToCells" IsReadOnly="True">
-                    <DataGridTemplateColumn.CellTemplate>
-                        <DataTemplate>
-                            <DatePicker Name="Date" Text="{Binding Path=Date}" />
-                        </DataTemplate>
-                    </DataGridTemplateColumn.CellTemplate>
-                </DataGridTemplateColumn>
-            </DataGrid.Columns>
-       </DataGrid>-->
-        
-    </Grid>
+            </GroupBox>
+
+            <ContentControl Grid.Row="2"  Margin="10,10,10,10" Content="{StaticResource PriceHistoryGrid}" DataContext="{Binding}"></ContentControl>
+            </Grid>
+        </TabItem>
+    </TabControl>
 </Window>
