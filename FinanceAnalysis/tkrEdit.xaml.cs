@@ -21,6 +21,7 @@ namespace FinanceAnalysis
         public tkrEdit()
         {
             InitializeComponent();
+            Console.WriteLine(this.DataContext);
         }
 
         private void Button_Click(object sender, RoutedEventArgs e)

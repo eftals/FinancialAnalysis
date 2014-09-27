@@ -20,15 +20,28 @@ namespace FinanceAnalysis
         private string yhooLastPrice;
         private List<TickerPOCO> subscribed = new List<TickerPOCO>();
 
-        private readonly object lockObj = new object();
+        private volatile object lockObj = new object();
 
 
         public void clearsubscriptions()
         {
+            stockTimer.Enabled = false;
             lock (lockObj)
             {
-                if (subscribed!=null) subscribed.Clear();
+                Application.Current.Dispatcher.BeginInvoke((Action)delegate()
+                {
+                    try
+                    {
+                        if (subscribed != null) subscribed.Clear();
+                    }
+                    catch (Exception exp)
+                    {
+                        Console.WriteLine(exp);
+                    }
+                });
+                
             }
+            stockTimer.Enabled = true;
         }
 
 
@@ -36,7 +49,19 @@ namespace FinanceAnalysis
         {
             lock (lockObj)
             {
-                subscribed.Add(newVal);
+                Application.Current.Dispatcher.BeginInvoke((Action)delegate()
+                {
+                    try
+                    {
+                        subscribed.Add(newVal);
+                    }
+                    catch (Exception exp)
+                    {
+                        Console.WriteLine(exp);
+                    }
+                });
+                
+                
             }
             return true;
         }
@@ -62,10 +87,12 @@ namespace FinanceAnalysis
 
                         if (serviceResult.Length != 3) return;
 
-                        Application.Current.Dispatcher.Invoke((Action)delegate()
+                        Application.Current.Dispatcher.
+                            BeginInvoke((Action)delegate()
                         {
                             try
                             {
+                                //Console.WriteLine("spinning on " + serviceResult);
 
                                 tkr.Date = DateTime.Parse(serviceResult[0].Split('\"')[1] + " " + serviceResult[1].Split('\"')[1]);
                                 tkr.LastPrice = double.Parse(serviceResult[2]);

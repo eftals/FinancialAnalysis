@@ -24,7 +24,7 @@ namespace FinanceAnalysis.POCO
 
 
 
-  /*      public string TickerName
+        /*public string TickerName
         {
             get { return (string)GetValue(TickerNameProperty); }
             set {
@@ -89,8 +89,20 @@ namespace FinanceAnalysis.POCO
         public static readonly DependencyProperty LastUpdatedProperty =
             DependencyProperty.Register("LastUpdated", typeof(DateTime), typeof(TickerPOCO), new UIPropertyMetadata(DateTime.MinValue));
 
-        
 
+
+
+        public string Email
+        {
+            get { return (string)GetValue(EmailProperty); }
+            set { SetValue(EmailProperty, value); }
+        }
+
+        // Using a DependencyProperty as the backing store for Email.  This enables animation, styling, binding, etc...
+        public static readonly DependencyProperty EmailProperty =
+            DependencyProperty.Register("Email", typeof(string), typeof(TickerPOCO), new PropertyMetadata(""));
+
+        
 
         string _tickerName;
         public string TickerName

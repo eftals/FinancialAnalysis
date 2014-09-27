@@ -1,8 +1,8 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<Schema Namespace="EftalModel.Store" Alias="Self" Provider="System.Data.SqlClient" ProviderManifestToken="2008" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/02/edm/ssdl">
+<Schema Namespace="EftalModel.Store" Alias="Self" Provider="System.Data.SqlClient" ProviderManifestToken="2008" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
   <EntityContainer Name="EftalModelStoreContainer">
-    <EntitySet Name="DailyStockPrice" EntityType="EftalModel.Store.DailyStockPrice" store:Type="Tables" Schema="dbo" />
-    <EntitySet Name="Ticker" EntityType="EftalModel.Store.Ticker" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="DailyStockPrice" EntityType="EftalModel.Store.DailyStockPrice" store:Type="Tables" Schema="dbo" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" />
+    <EntitySet Name="Ticker" EntityType="EftalModel.Store.Ticker" store:Type="Tables" Schema="dbo" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" />
     <AssociationSet Name="FK__DailyStoc__TICKE__267ABA7A" Association="EftalModel.Store.FK__DailyStoc__TICKE__267ABA7A">
       <End Role="Ticker" EntitySet="Ticker" />
       <End Role="DailyStockPrice" EntitySet="DailyStockPrice" />

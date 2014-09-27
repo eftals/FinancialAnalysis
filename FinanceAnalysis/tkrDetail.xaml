@@ -1,0 +1,55 @@
+﻿<UserControl x:Class="FinanceAnalysis.tkrDetail"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             mc:Ignorable="d" 
+             xmlns:behaviors="clr-namespace:FinanceAnalysis.Helpers"
+             d:DesignHeight="300" d:DesignWidth="300"
+             xmlns:sys="clr-namespace:System;assembly=mscorlib">
+    <UserControl.Resources>
+    <sys:String x:Key="emailRegex">^[a-zA-Z][\w\.-]*[a-zA-Z0-9]@
+        [a-zA-Z0-9][\w\.-]*[a-zA-Z0-9]\.[a-zA-Z][a-zA-Z\.]
+        *[a-zA-Z]$</sys:String>
+        <Style x:Key="textBoxInError" TargetType="{x:Type TextBox}">
+            <Style.Triggers>
+                <Trigger Property="Validation.HasError" Value="true">
+                    <Setter Property="ToolTip"
+                    Value="{Binding RelativeSource={x:Static RelativeSource.Self},
+                        Path=(Validation.Errors)[0].ErrorContent}"/>
+                </Trigger>
+            </Style.Triggers>
+        </Style>
+    </UserControl.Resources>
+    
+    <Grid>
+        <StackPanel Orientation="Vertical">
+            <StackPanel Orientation="Horizontal" DataContext="{Binding}">
+                <Label GotFocus="Label_GotFocus">Ticker:</Label>
+                <TextBlock Name="tkr" Text="{Binding Path=TickerID}">
+                </TextBlock>
+                <Label>Name:
+                </Label>
+                <TextBlock Name="tkrDesc" Text="{Binding Path=TickerName}"/>
+                <Label>Last Price:</Label>
+                <TextBlock Name="tkrLastPrice" Text="{Binding Path=LastPrice}"/>
+                <Label>Last Date:</Label>
+                <TextBlock Name="tkrLastPriceDate" Text="{Binding Path=Date}"/>
+            </StackPanel>
+            <StackPanel Orientation="Vertical">
+                <Label>Send Mail to:</Label>
+                <TextBox behaviors:SelectAllOnFocusBehaviour.SelectAllOnFocus="True">
+                    <TextBox.Text>
+                        <Binding Path="Email" UpdateSourceTrigger="PropertyChanged" >
+                            <Binding.ValidationRules>
+                                <behaviors:GenericRegexValidator Pattern="{StaticResource emailRegex}"/>
+                            </Binding.ValidationRules>
+                        </Binding>
+                    </TextBox.Text>
+                </TextBox>
+                
+                <Button>Send</Button>
+            </StackPanel>
+        </StackPanel>
+    </Grid>
+</UserControl>

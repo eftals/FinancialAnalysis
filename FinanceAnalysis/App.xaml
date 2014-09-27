@@ -1,8 +1,13 @@
 ﻿<Application x:Class="FinanceAnalysis.App"
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-             StartupUri="mainWindow.xaml">
+             DispatcherUnhandledException="Application_DispatcherUnhandledException"
+             StartupUri="mainWindow.xaml"
+             xmlns:sys="clr-namespace:System;assembly=mscorlib"
+             Startup="Application_Startup">
     <Application.Resources>
-         
+
+        <sys:String x:Key="ApplicationTitle">Eftal's Finance App</sys:String>
+ 
     </Application.Resources>
 </Application>

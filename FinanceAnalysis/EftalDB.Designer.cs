@@ -8,12 +8,13 @@
 //------------------------------------------------------------------------------
 
 using System;
+using System.ComponentModel;
+using System.Data.EntityClient;
 using System.Data.Objects;
 using System.Data.Objects.DataClasses;
-using System.Data.EntityClient;
-using System.ComponentModel;
-using System.Xml.Serialization;
+using System.Linq;
 using System.Runtime.Serialization;
+using System.Xml.Serialization;
 
 [assembly: EdmSchemaAttribute()]
 #region EDM Relationship Metadata
@@ -104,6 +105,7 @@ namespace FinanceAnalysis
         private ObjectSet<Ticker> _Tickers;
 
         #endregion
+
         #region AddTo Methods
     
         /// <summary>
@@ -123,11 +125,11 @@ namespace FinanceAnalysis
         }
 
         #endregion
+
     }
-    
 
     #endregion
-    
+
     #region Entities
     
     /// <summary>
@@ -168,7 +170,8 @@ namespace FinanceAnalysis
         }
 
         #endregion
-        #region Primitive Properties
+
+        #region Simple Properties
     
         /// <summary>
         /// No Metadata Documentation available.
@@ -187,7 +190,7 @@ namespace FinanceAnalysis
                 {
                     OnDailyStockPriceIDChanging(value);
                     ReportPropertyChanging("DailyStockPriceID");
-                    _DailyStockPriceID = StructuralObject.SetValidValue(value);
+                    _DailyStockPriceID = StructuralObject.SetValidValue(value, "DailyStockPriceID");
                     ReportPropertyChanged("DailyStockPriceID");
                     OnDailyStockPriceIDChanged();
                 }
@@ -212,7 +215,7 @@ namespace FinanceAnalysis
             {
                 OnTICKERChanging(value);
                 ReportPropertyChanging("TICKER");
-                _TICKER = StructuralObject.SetValidValue(value);
+                _TICKER = StructuralObject.SetValidValue(value, "TICKER");
                 ReportPropertyChanged("TICKER");
                 OnTICKERChanged();
             }
@@ -236,7 +239,7 @@ namespace FinanceAnalysis
             {
                 OnDateChanging(value);
                 ReportPropertyChanging("Date");
-                _Date = StructuralObject.SetValidValue(value);
+                _Date = StructuralObject.SetValidValue(value, "Date");
                 ReportPropertyChanged("Date");
                 OnDateChanged();
             }
@@ -260,7 +263,7 @@ namespace FinanceAnalysis
             {
                 OnOpenChanging(value);
                 ReportPropertyChanging("Open");
-                _Open = StructuralObject.SetValidValue(value);
+                _Open = StructuralObject.SetValidValue(value, "Open");
                 ReportPropertyChanged("Open");
                 OnOpenChanged();
             }
@@ -284,7 +287,7 @@ namespace FinanceAnalysis
             {
                 OnHighChanging(value);
                 ReportPropertyChanging("High");
-                _High = StructuralObject.SetValidValue(value);
+                _High = StructuralObject.SetValidValue(value, "High");
                 ReportPropertyChanged("High");
                 OnHighChanged();
             }
@@ -308,7 +311,7 @@ namespace FinanceAnalysis
             {
                 OnLowChanging(value);
                 ReportPropertyChanging("Low");
-                _Low = StructuralObject.SetValidValue(value);
+                _Low = StructuralObject.SetValidValue(value, "Low");
                 ReportPropertyChanged("Low");
                 OnLowChanged();
             }
@@ -332,7 +335,7 @@ namespace FinanceAnalysis
             {
                 OnCloseChanging(value);
                 ReportPropertyChanging("Close");
-                _Close = StructuralObject.SetValidValue(value);
+                _Close = StructuralObject.SetValidValue(value, "Close");
                 ReportPropertyChanged("Close");
                 OnCloseChanged();
             }
@@ -356,7 +359,7 @@ namespace FinanceAnalysis
             {
                 OnVolumeChanging(value);
                 ReportPropertyChanging("Volume");
-                _Volume = StructuralObject.SetValidValue(value);
+                _Volume = StructuralObject.SetValidValue(value, "Volume");
                 ReportPropertyChanged("Volume");
                 OnVolumeChanged();
             }
@@ -380,7 +383,7 @@ namespace FinanceAnalysis
             {
                 OnadjCloseChanging(value);
                 ReportPropertyChanging("adjClose");
-                _adjClose = StructuralObject.SetValidValue(value);
+                _adjClose = StructuralObject.SetValidValue(value, "adjClose");
                 ReportPropertyChanged("adjClose");
                 OnadjCloseChanged();
             }
@@ -390,7 +393,7 @@ namespace FinanceAnalysis
         partial void OnadjCloseChanged();
 
         #endregion
-    
+
         #region Navigation Properties
     
         /// <summary>
@@ -470,6 +473,7 @@ namespace FinanceAnalysis
         }
 
         #endregion
+
     }
     
     /// <summary>
@@ -496,7 +500,8 @@ namespace FinanceAnalysis
         }
 
         #endregion
-        #region Primitive Properties
+
+        #region Simple Properties
     
         /// <summary>
         /// No Metadata Documentation available.
@@ -515,7 +520,7 @@ namespace FinanceAnalysis
                 {
                     OnTickerIDChanging(value);
                     ReportPropertyChanging("TickerID");
-                    _TickerID = StructuralObject.SetValidValue(value);
+                    _TickerID = StructuralObject.SetValidValue(value, "TickerID");
                     ReportPropertyChanged("TickerID");
                     OnTickerIDChanged();
                 }
@@ -540,7 +545,7 @@ namespace FinanceAnalysis
             {
                 OnTickerNameChanging(value);
                 ReportPropertyChanging("TickerName");
-                _TickerName = StructuralObject.SetValidValue(value, false);
+                _TickerName = StructuralObject.SetValidValue(value, false, "TickerName");
                 ReportPropertyChanged("TickerName");
                 OnTickerNameChanged();
             }
@@ -550,7 +555,7 @@ namespace FinanceAnalysis
         partial void OnTickerNameChanged();
 
         #endregion
-    
+
         #region Navigation Properties
     
         /// <summary>
@@ -598,8 +603,9 @@ namespace FinanceAnalysis
         }
 
         #endregion
+
     }
 
     #endregion
-    
+
 }

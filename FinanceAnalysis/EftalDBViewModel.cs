@@ -23,20 +23,17 @@ namespace FinanceAnalysis
         {
             get { return _dStockPriceView; }
         }
- 
-  
-        
-   
+
+
+
+
         public void RefreshHistory()
         {
+
+            dStockPriceColl.Clear();
+            dTickerColl.Clear();
             try
             {
-                    
-                dStockPriceColl.Clear();
-                dTickerColl.Clear();
-                if (dStockPriceView!=null) dStockPriceView.Refresh();
-               
-                    
                 //populate POCO
                 using (var objCtx = new EftalEntities1())
                 {
@@ -67,15 +64,14 @@ namespace FinanceAnalysis
                     {
                         dStockPriceColl.Add(item);
                     }
-
-
                 }
-            }
-            catch (Exception exp)
+            } catch (Exception ex)
             {
-                Console.WriteLine(exp);
+                Console.WriteLine(ex.StackTrace);
             }
         }
+    
+
 
         public EftalDBViewModel()
         {
@@ -104,8 +100,12 @@ namespace FinanceAnalysis
         {
             if (SelectedTicker != null)
             {
-                //yahooReaderInst.getStockHistory(SelectedTicker.TickerName);
+                yahooReaderInst.getStockHistory(SelectedTicker.TickerName);
+                SelectedTicker = null;
+                yahooReaderInst.clearsubscriptions();
                 RefreshHistory();
+                foreach (var item in dTickerColl)
+                    yahooReaderInst.subscribe(item);
             }
         }
 
@@ -117,6 +117,8 @@ namespace FinanceAnalysis
                 using (EftalEntities1 objCtx = new EftalEntities1())
                 {
                     SelectedTicker.TickerID = objCtx.Tickers.Max(a => a.TickerID)+1;
+
+                   
 
                     objCtx.AddToTickers(new Ticker
                     {
@@ -180,15 +182,17 @@ namespace FinanceAnalysis
             }
             set
             {
+                RaisePropertyChanged("SelectedTicker");
                 if (_SelectedTicker != value)
                 {
                     _SelectedTicker = value;
                    if (_SelectedTicker!=null)
                         dStockPriceView.Filter=((Predicate<object>) delegate(object item)
                         {
-                            return (item as DailyStockPricePOCO).TICKER == _SelectedTicker.TickerID;
+                            if (_SelectedTicker != null)
+                                return (item as DailyStockPricePOCO).TICKER == _SelectedTicker.TickerID;
+                            else return false;
                         });
-                    RaisePropertyChanged("SelectedTicker");
                 }
             }
         }

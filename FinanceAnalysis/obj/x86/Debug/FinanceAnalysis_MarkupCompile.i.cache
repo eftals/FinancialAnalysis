@@ -4,17 +4,17 @@
 winexe
 C#
 .cs
-c:\dev\FinanceAnalysis\FinanceAnalysis\obj\x86\Debug\
+C:\DEV\FinancialAnalysis\FinanceAnalysis\obj\x86\Debug\
 FinanceAnalysis
 none
 false
 DEBUG;TRACE
-c:\dev\FinanceAnalysis\FinanceAnalysis\App.xaml
-21251359519
+C:\DEV\FinancialAnalysis\FinanceAnalysis\App.xaml
+3-958010127
 
-15-1828976409
-15383884537
-mainWindow.xaml;tkrEdit.xaml;
+221251042779
+21106349448
+mainWindow.xaml;tkrDetail.xaml;tkrEdit.xaml;
 
 True
 
